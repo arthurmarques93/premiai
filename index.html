@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Convite · PremiAí</title>
+<meta name="description" content="Você foi convidado para um evento no PremiAí. Abra o app ou baixe para participar.">
+<meta property="og:title" content="Convite para o PremiAí">
+<meta property="og:description" content="Toque para entrar no evento e votar.">
+<meta property="og:image" content="https://arthurmarques93.github.io/premiai/icon.png">
+<meta name="theme-color" content="#090807">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+  :root {
+    --black: #090807;
+    --surface: #161411;
+    --surface-high: #211e1a;
+    --gold: #d4ad5c;
+    --gold-light: #fae099;
+    --gold-deep: #856126;
+    --ivory: #f7f0de;
+    --muted: rgba(247, 240, 222, 0.55);
+    --hairline: rgba(247, 240, 222, 0.08);
+    --gold-gradient: linear-gradient(135deg, var(--gold-light), var(--gold) 40%, var(--gold-deep) 70%, var(--gold));
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: var(--black); }
+  body {
+    min-height: 100dvh;
+    color: var(--ivory);
+    font: 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background:
+      radial-gradient(ellipse 80% 45% at 50% 0%, rgba(212, 173, 92, 0.22), transparent 70%),
+      var(--black);
+    display: flex;
+    justify-content: center;
+    padding: max(32px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+  }
+  main { width: 100%; max-width: 420px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
+  .crown { width: 92px; filter: drop-shadow(0 0 18px rgba(212, 173, 92, 0.55)); }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); }
+  h1 {
+    font: 600 clamp(32px, 9vw, 42px)/1.1 "Iowan Old Style", "Palatino", Georgia, serif;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    overflow-wrap: anywhere;
+  }
+  .lead { color: var(--muted); }
+  .card {
+    width: 100%; padding: 20px; border-radius: 20px;
+    background: rgba(22, 20, 17, 0.85); border: 1px solid var(--hairline);
+    display: flex; flex-direction: column; gap: 14px; align-items: center;
+  }
+  .code {
+    font: 700 34px/1 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 0.2em; padding-left: 0.2em;
+    background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; min-height: 54px; padding: 14px 20px; border-radius: 999px;
+    font-family: inherit; font-size: 14px; font-weight: 700; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; cursor: pointer; border: 0;
+    transition: transform 0.15s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn.primary { background: var(--gold-gradient); color: var(--black); box-shadow: 0 8px 28px rgba(212, 173, 92, 0.25); }
+  .btn.outline { background: rgba(22, 20, 17, 0.7); color: var(--gold-light); border: 1px solid var(--gold); }
+  .btn[aria-disabled="true"] { opacity: 0.45; pointer-events: none; }
+  .steps { text-align: left; width: 100%; display: grid; gap: 10px; counter-reset: step; list-style: none; padding: 0; }
+  .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; color: var(--muted); font-size: 15px; }
+  .steps li::before {
+    counter-increment: step; content: counter(step);
+    width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--surface-high); color: var(--gold); font-weight: 700; font-size: 13px;
+  }
+  .steps b { color: var(--ivory); font-weight: 600; }
+  .small { font-size: 13px; color: var(--muted); }
+  .toast {
+    position: fixed; left: 50%; bottom: max(24px, env(safe-area-inset-bottom)); transform: translate(-50%, 20px);
+    background: var(--surface-high); color: var(--gold-light); padding: 10px 18px; border-radius: 999px;
+    border: 1px solid var(--hairline); font-weight: 600; font-size: 14px; opacity: 0; transition: 0.25s;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <!-- Coroa do ícone, igual à do app (grade 710 × 505). -->
+  <svg class="crown" viewBox="0 0 710 505" aria-hidden="true">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fae099"/><stop offset=".45" stop-color="#d4ad5c"/><stop offset=".75" stop-color="#856126"/><stop offset="1" stop-color="#d4ad5c"/>
+      </linearGradient>
+    </defs>
+    <g fill="url(#g)">
+      <polyline points="112,410 50,205 172,268 350,100 485,322 655,205 598,410" fill="none" stroke="url(#g)" stroke-width="54" stroke-linejoin="miter"/>
+      <path d="M30 478 Q352 200 680 494 Q352 292 30 478 Z"/>
+      <circle cx="45" cy="150" r="38"/><circle cx="350" cy="44" r="44"/><circle cx="660" cy="150" r="38"/>
+    </g>
+  </svg>
+
+  <!-- Com código: convite para um evento. -->
+  <section id="invite" hidden>
+    <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+      <span class="eyebrow">Você foi convidado para</span>
+      <h1 id="eventName">um evento</h1>
+      <p class="lead">Indique, vote e descubra quem leva o prêmio.</p>
+    </div>
+  </section>
+
+  <!-- Sem código: página do app. -->
+  <section id="generic" hidden>
+    <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+      <span class="eyebrow">Bem-vindo ao</span>
+      <h1>PremiAí</h1>
+      <p class="lead">Premiações e votações para o seu evento. Peça o código do evento a quem organizou.</p>
+    </div>
+  </section>
+
+  <div class="card" id="codeCard" hidden>
+    <span class="eyebrow">Código do evento</span>
+    <span class="code" id="code">——————</span>
+    <a class="btn primary" id="openApp" href="#">Abrir no app</a>
+    <button class="btn outline" id="copy" type="button">Copiar código</button>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow">Ainda não tem o app?</span>
+    <a class="btn outline" id="android" href="https://github.com/arthurmarques93/premiai/releases/latest/download/PremiAi.apk">Baixar para Android</a>
+    <a class="btn outline" aria-disabled="true">iPhone · em breve</a>
+    <ol class="steps" id="steps">
+      <li><span>Baixe e instale o app. No Android, permita <b>instalar desta fonte</b> quando o celular perguntar.</span></li>
+      <li><span>Abra o PremiAí e escolha <b>Participar</b>.</span></li>
+      <li><span>Digite o código <b id="stepCode">do evento</b>, escolha um usuário e uma senha.</span></li>
+    </ol>
+  </div>
+
+  <p class="small">PremiAí · o código também funciona digitado direto no app.</p>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  const SUPABASE_URL = "https://ohbooijawjzlyxencccy.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_kaNWCgdWp-6xFsb1vlxYTQ__cL94_YV";
+  const $ = (id) => document.getElementById(id);
+
+  // Aceita ?e=CODIGO, ?evento=CODIGO ou #CODIGO.
+  const params = new URLSearchParams(location.search);
+  const raw = params.get("e") || params.get("evento") || location.hash.slice(1);
+  const code = (raw || "").trim().toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 12);
+
+  function toast(text) {
+    const t = $("toast");
+    t.textContent = text;
+    t.classList.add("show");
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => t.classList.remove("show"), 1800);
+  }
+
+  if (code.length >= 4) {
+    $("invite").hidden = false;
+    $("codeCard").hidden = false;
+    $("code").textContent = code;
+    $("stepCode").textContent = code;
+    $("openApp").href = `premiai://evento/${code}`;
+    document.title = `Convite ${code} · PremiAí`;
+
+    // Se o app não abrir em ~1,5 s, a pessoa provavelmente não tem o app.
+    $("openApp").addEventListener("click", () => {
+      setTimeout(() => {
+        if (!document.hidden) toast("Não abriu? Baixe o app abaixo.");
+      }, 1500);
+    });
+
+    $("copy").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(code);
+        toast("Código copiado");
+      } catch {
+        toast(`Código: ${code}`);
+      }
+    });
+
+    fetch(`${SUPABASE_URL}/rest/v1/rpc/event_preview`, {
+      method: "POST",
+      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ p_code: code }),
+    })
+      .then((r) => (r.ok ? r.json() : []))
+      .then((rows) => {
+        const event = rows[0];
+        if (event) {
+          $("eventName").textContent = event.name;
+          document.title = `${event.name} · PremiAí`;
+        } else {
+          $("eventName").textContent = "um evento";
+        }
+      })
+      .catch(() => {});
+  } else {
+    $("generic").hidden = false;
+  }
+
+  // No iPhone o APK não serve: deixa o Android discreto.
+  if (/iPhone|iPad|iPod/.test(navigator.userAgent)) $("android").textContent = "Baixar para Android (só Android)";
+</script>
+</body>
+</html>
