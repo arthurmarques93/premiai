@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Suporte · PremiAí</title>
+<meta name="description" content="Ajuda e contato do PremiAí.">
+<meta name="theme-color" content="#090807">
+<link rel="icon" href="favicon.png">
+<style>
+  :root {
+    --black: #090807;
+    --surface: #161411;
+    --gold: #d4ad5c;
+    --gold-light: #fae099;
+    --gold-deep: #856126;
+    --ivory: #f7f0de;
+    --muted: rgba(247, 240, 222, 0.65);
+    --hairline: rgba(247, 240, 222, 0.08);
+    --gold-gradient: linear-gradient(135deg, var(--gold-light), var(--gold) 40%, var(--gold-deep) 70%, var(--gold));
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: var(--black); }
+  body {
+    color: var(--ivory);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background:
+      radial-gradient(ellipse 80% 30% at 50% 0%, rgba(212, 173, 92, 0.18), transparent 70%),
+      var(--black);
+    padding: max(32px, env(safe-area-inset-top)) 16px max(40px, env(safe-area-inset-bottom));
+  }
+  main { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); }
+  h1 {
+    font: 600 clamp(30px, 8vw, 40px)/1.15 "Iowan Old Style", "Palatino", Georgia, serif;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  h2 { font: 600 21px/1.3 "Iowan Old Style", "Palatino", Georgia, serif; color: var(--gold-light); margin-bottom: 8px; }
+  p, li { color: var(--muted); }
+  ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  strong { color: var(--ivory); font-weight: 600; }
+  a { color: var(--gold-light); }
+  section {
+    padding: 20px; border-radius: 20px;
+    background: rgba(22, 20, 17, 0.85); border: 1px solid var(--hairline);
+  }
+  .updated { font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">PremiAí</p>
+    <h1>Suporte</h1>
+    <p class="updated">Dúvidas, problemas ou sugestões: escreva para <a href="mailto:premiaiapp@gmail.com">premiaiapp@gmail.com</a>.</p>
+  </header>
+
+  <section>
+    <h2>Como participar de um evento</h2>
+    <p>Toque no link do convite ou abra o app e escolha <strong>Participar</strong>. Digite o código do evento e seu nome. Não precisa de senha: a participação fica ligada ao aparelho. Se o organizador pedir conta, entre com Google, Apple ou usuário e senha.</p>
+  </section>
+
+  <section>
+    <h2>Como organizar</h2>
+    <p>Escolha <strong>Organizar</strong>, crie sua conta e dê um nome ao evento. Ele já vem com categorias sugeridas, que você pode trocar. Mande o convite, abra as indicações e, depois, a votação final entre os mais indicados. O resultado aparece ao vivo.</p>
+  </section>
+
+  <section>
+    <h2>Premium</h2>
+    <p>O primeiro evento de cada conta vem com tudo liberado. Nos seguintes, a versão grátis tem votação com até 6 categorias. O <strong>Premium</strong> é uma compra única que libera inscrições, check-in, sorteios, Rei e Rainha e até 30 categorias em todos os eventos que você criar. Trocou de aparelho? Toque em <strong>Restaurar compra</strong> na tela do Premium, entrando com a mesma conta.</p>
+  </section>
+
+  <section>
+    <h2>Excluir conta</h2>
+    <p>Na aba <strong>Conta</strong>, toque em <strong>Excluir conta</strong>. A conta e tudo dela são apagados de vez. Veja também a <a href="privacidade.html">política de privacidade</a>.</p>
+  </section>
+</main>
+</body>
+</html>
