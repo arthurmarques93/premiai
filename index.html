@@ -104,40 +104,41 @@
   <!-- Com código: convite para um evento. -->
   <section id="invite" hidden>
     <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
-      <span class="eyebrow">Você foi convidado para</span>
-      <h1 id="eventName">um evento</h1>
-      <p class="lead">Indique, vote e descubra quem leva o prêmio.</p>
+      <span class="eyebrow" data-i18n="invited">Você foi convidado para</span>
+      <h1 id="eventName" data-i18n="anEvent">um evento</h1>
+      <p class="lead" data-i18n="inviteLead">Indique, vote e descubra quem leva o prêmio.</p>
     </div>
   </section>
 
   <!-- Sem código: página do app. -->
   <section id="generic" hidden>
     <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
-      <span class="eyebrow">Bem-vindo ao</span>
+      <span class="eyebrow" data-i18n="welcome">Bem-vindo ao</span>
       <h1>PremiAí</h1>
-      <p class="lead">Premiações e votações para o seu evento. Peça o código do evento a quem organizou.</p>
+      <p class="lead" data-i18n="genericLead">Premiações e votações para o seu evento. Peça o código do evento a quem organizou.</p>
     </div>
   </section>
 
   <div class="card" id="codeCard" hidden>
-    <span class="eyebrow">Código do evento</span>
+    <span class="eyebrow" data-i18n="eventCode">Código do evento</span>
     <span class="code" id="code">——————</span>
-    <a class="btn primary" id="openApp" href="#">Abrir no app</a>
-    <button class="btn outline" id="copy" type="button">Copiar código</button>
+    <a class="btn primary" id="openApp" href="#" data-i18n="openApp">Abrir no app</a>
+    <button class="btn outline" id="copy" type="button" data-i18n="copyCode">Copiar código</button>
   </div>
 
   <div class="card">
-    <span class="eyebrow">Ainda não tem o app?</span>
-    <a class="btn outline" id="android" href="https://github.com/arthurmarques93/premiai/releases/latest/download/PremiAi.apk">Baixar para Android</a>
-    <a class="btn outline" aria-disabled="true">iPhone · em breve</a>
+    <span class="eyebrow" data-i18n="noApp">Ainda não tem o app?</span>
+    <a class="btn outline" id="android" href="https://github.com/arthurmarques93/premiai/releases/latest/download/PremiAi.apk" data-i18n="android">Baixar para Android</a>
+    <a class="btn outline" aria-disabled="true" data-i18n="iphoneSoon">iPhone · em breve</a>
     <ol class="steps" id="steps">
-      <li><span>Baixe e instale o app. No Android, permita <b>instalar desta fonte</b> quando o celular perguntar.</span></li>
-      <li><span>Abra o PremiAí e escolha <b>Participar</b>.</span></li>
-      <li><span>Digite o código <b id="stepCode">do evento</b>, escolha um usuário e uma senha.</span></li>
+      <li><span data-i18n-html="step1">Baixe e instale o app. No Android, permita <b>instalar desta fonte</b> quando o celular perguntar.</span></li>
+      <li><span data-i18n-html="step2">Abra o PremiAí e escolha <b>Participar</b>.</span></li>
+      <li><span><span data-i18n="step3a">Digite o código</span> <b id="stepCode" data-i18n="step3code">do evento</b> <span data-i18n="step3b">e o seu nome.</span></span></li>
     </ol>
   </div>
 
-  <p class="small">PremiAí · o código também funciona digitado direto no app.</p>
+  <p class="small" data-i18n="footer">PremiAí · o código também funciona digitado direto no app.</p>
+  <p class="small"><a href="privacidade.html" id="privacyLink" data-i18n="privacy">Política de privacidade</a> · <a href="suporte.html" id="supportLink" data-i18n="support">Suporte</a></p>
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -145,6 +146,36 @@
   const SUPABASE_URL = "https://ohbooijawjzlyxencccy.supabase.co";
   const SUPABASE_KEY = "sb_publishable_kaNWCgdWp-6xFsb1vlxYTQ__cL94_YV";
   const $ = (id) => document.getElementById(id);
+
+  // Idioma: português para quem usa português (?lang=pt|en força); o resto vê em inglês.
+  const STRINGS = {
+    pt: {},
+    en: {
+      invited: "You're invited to", anEvent: "an event", inviteLead: "Nominate, vote and find out who takes the award.",
+      welcome: "Welcome to", genericLead: "Awards and votes for your event. Ask the host for the event code.",
+      eventCode: "Event code", openApp: "Open in the app", copyCode: "Copy code", noApp: "Don't have the app yet?",
+      android: "Download for Android", iphoneSoon: "iPhone · coming soon",
+      step1: "Download and install the app. On Android, allow <b>install from this source</b> when your phone asks.",
+      step2: "Open PremiAí and choose <b>Join</b>.",
+      step3a: "Enter the code", step3code: "for the event", step3b: "and your name.",
+      footer: "PremiAí · the code also works typed straight into the app.",
+      privacy: "Privacy policy", support: "Support",
+      invite: (c) => `Invite ${c}`, notOpened: "Didn't open? Download the app below.", copied: "Code copied",
+      codeIs: (c) => `Code: ${c}`, androidOnly: "Download for Android (Android only)",
+    },
+  };
+  const forced = new URLSearchParams(location.search).get("lang");
+  const lang = forced === "pt" || forced === "en" ? forced
+    : (navigator.languages || [navigator.language]).some((l) => (l || "").toLowerCase().startsWith("pt")) ? "pt" : "en";
+  const T = STRINGS[lang];
+  if (lang === "en") {
+    document.documentElement.lang = "en";
+    document.querySelectorAll("[data-i18n]").forEach((el) => { const v = T[el.dataset.i18n]; if (v) el.textContent = v; });
+    document.querySelectorAll("[data-i18n-html]").forEach((el) => { const v = T[el.dataset.i18nHtml]; if (v) el.innerHTML = v; });
+    $("privacyLink").href = "privacy.html";
+    $("supportLink").href = "support.html";
+  }
+  const t = (key, pt, ...args) => { const v = T[key]; return v === undefined ? pt : typeof v === "function" ? v(...args) : v; };
 
   // Aceita ?e=CODIGO, ?evento=CODIGO ou #CODIGO.
   const params = new URLSearchParams(location.search);
@@ -165,21 +196,21 @@
     $("code").textContent = code;
     $("stepCode").textContent = code;
     $("openApp").href = `premiai://evento/${code}`;
-    document.title = `Convite ${code} · PremiAí`;
+    document.title = `${t("invite", `Convite ${code}`, code)} · PremiAí`;
 
     // Se o app não abrir em ~1,5 s, a pessoa provavelmente não tem o app.
     $("openApp").addEventListener("click", () => {
       setTimeout(() => {
-        if (!document.hidden) toast("Não abriu? Baixe o app abaixo.");
+        if (!document.hidden) toast(t("notOpened", "Não abriu? Baixe o app abaixo."));
       }, 1500);
     });
 
     $("copy").addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(code);
-        toast("Código copiado");
+        toast(t("copied", "Código copiado"));
       } catch {
-        toast(`Código: ${code}`);
+        toast(t("codeIs", `Código: ${code}`, code));
       }
     });
 
@@ -195,7 +226,7 @@
           $("eventName").textContent = event.name;
           document.title = `${event.name} · PremiAí`;
         } else {
-          $("eventName").textContent = "um evento";
+          $("eventName").textContent = t("anEvent", "um evento");
         }
       })
       .catch(() => {});
@@ -204,7 +235,7 @@
   }
 
   // No iPhone o APK não serve: deixa o Android discreto.
-  if (/iPhone|iPad|iPod/.test(navigator.userAgent)) $("android").textContent = "Baixar para Android (só Android)";
+  if (/iPhone|iPad|iPod/.test(navigator.userAgent)) $("android").textContent = t("androidOnly", "Baixar para Android (só Android)");
 </script>
 </body>
 </html>

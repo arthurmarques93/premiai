@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy policy · PremiAí</title>
+<meta name="description" content="What data PremiAí keeps, why, and how to delete it.">
+<meta name="theme-color" content="#090807">
+<link rel="icon" href="favicon.png">
+<style>
+  :root {
+    --black: #090807;
+    --surface: #161411;
+    --gold: #d4ad5c;
+    --gold-light: #fae099;
+    --gold-deep: #856126;
+    --ivory: #f7f0de;
+    --muted: rgba(247, 240, 222, 0.65);
+    --hairline: rgba(247, 240, 222, 0.08);
+    --gold-gradient: linear-gradient(135deg, var(--gold-light), var(--gold) 40%, var(--gold-deep) 70%, var(--gold));
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: var(--black); }
+  body {
+    color: var(--ivory);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background:
+      radial-gradient(ellipse 80% 30% at 50% 0%, rgba(212, 173, 92, 0.18), transparent 70%),
+      var(--black);
+    padding: max(32px, env(safe-area-inset-top)) 16px max(40px, env(safe-area-inset-bottom));
+  }
+  main { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); }
+  h1 {
+    font: 600 clamp(30px, 8vw, 40px)/1.15 "Iowan Old Style", "Palatino", Georgia, serif;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  h2 { font: 600 21px/1.3 "Iowan Old Style", "Palatino", Georgia, serif; color: var(--gold-light); margin-bottom: 8px; }
+  p, li { color: var(--muted); }
+  ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  strong { color: var(--ivory); font-weight: 600; }
+  a { color: var(--gold-light); }
+  section {
+    padding: 20px; border-radius: 20px;
+    background: rgba(22, 20, 17, 0.85); border: 1px solid var(--hairline);
+  }
+  .updated { font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">PremiAí</p>
+    <h1>Privacy policy</h1>
+    <p class="updated">Updated November 6, 2026. <a href="privacidade.html">Português</a></p>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <p>PremiAí is an awards app for events: people join an event with the invite code, nominate, vote and follow the results. We keep only what is needed for that to work, and we don't sell data. Events on the free version show Google AdMob ads; Premium events don't.</p>
+  </section>
+
+  <section>
+    <h2>What we keep</h2>
+    <ul>
+      <li><strong>Account:</strong> the name others see, your login username and your password (stored only as a hash, never as text). If you sign in with Google or Apple, we keep the name and email that sign-in provides.</li>
+      <li><strong>Recovery email</strong> (optional): to reset a forgotten password.</li>
+      <li><strong>Joining on this device:</strong> if you join with just your name, you are linked to an identifier the app creates on this device, so you come back as the same guest.</li>
+      <li><strong>What you do in events:</strong> nominations, votes, RSVP, check-in, King and Queen votes and raffle prizes.</li>
+      <li><strong>Photos:</strong> your profile photo and the photos the host adds to finalists and prizes.</li>
+      <li><strong>Premium purchase:</strong> whether your account has Premium. Payment is handled by Apple or Google; we never receive your card details.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Who sees it</h2>
+    <p>Your name, photo and nominations are visible only to people in the same event (those who have the invite code). Votes are secret: other guests only see totals. Event hosts see who joined, who RSVP'd and who checked in.</p>
+  </section>
+
+  <section>
+    <h2>What we use it for</h2>
+    <p>Only to make the app work: signing in, running the vote, counting votes, showing results, drawing raffles and unlocking Premium. None of this (names, votes, photos, events) is shared with advertisers.</p>
+  </section>
+
+  <section>
+    <h2>Ads</h2>
+    <p>On free-version events, a full-screen ad occasionally appears after an action, such as sending your ballot. Ads come from <strong>Google AdMob</strong>, which may use your device's advertising identifier, IP address and technical device data to choose and measure ads.</p>
+    <ul>
+      <li><strong>In Europe</strong>, the app asks first whether you accept personalized ads. To change your answer, tap <strong>Ad privacy</strong>, next to the privacy policy link in the app.</li>
+      <li><strong>On iPhone</strong>, the app asks for permission to track. If you decline, ads still appear but without using the advertising identifier.</li>
+      <li><strong>On Android</strong>, you can delete or turn off the advertising ID in your device settings (Privacy → Ads).</li>
+    </ul>
+    <p>Google handles this data under its own policy: <a href="https://policies.google.com/technologies/ads">policies.google.com/technologies/ads</a>.</p>
+  </section>
+
+  <section>
+    <h2>Services we use</h2>
+    <ul>
+      <li><strong>Supabase</strong>: database and sign-in, where accounts and events are stored.</li>
+      <li><strong>RevenueCat</strong>: verifies the Premium purchase; receives the account identifier and purchase history.</li>
+      <li><strong>Apple and Google</strong>: sign-in (if you choose it) and the Premium payment.</li>
+      <li><strong>Google AdMob</strong>: ads on free-version events.</li>
+      <li><strong>GitHub Pages</strong>: hosts this page and the invite page.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How long and how to delete</h2>
+    <p>Data is kept while your account exists. In the app, <strong>Account → Delete account</strong> permanently deletes your account, nominations, votes, attendance and photo. Events where you are the only host are deleted too; events with other hosts stay with them. Hosts can also reset an event's votes and RSVPs at any time.</p>
+  </section>
+
+  <section>
+    <h2>Children</h2>
+    <p>PremiAí is not made for children under 13 and does not knowingly collect their data.</p>
+  </section>
+
+  <section>
+    <h2>Your rights and contact</h2>
+    <p>You can ask to access, correct or delete your data, or ask questions about this policy, at <a href="mailto:premiaiapp@gmail.com">premiaiapp@gmail.com</a>. If this policy changes, the date above is updated.</p>
+  </section>
+</main>
+</body>
+</html>
